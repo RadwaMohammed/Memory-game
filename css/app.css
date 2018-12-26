@@ -96,16 +96,20 @@ h1 {
     margin-bottom: 10px;
 }
 
-.score-panel .stars {
+/*Star rating style*/
+.score-panel .stars,
+.modal-star {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 0.313rem 0 0;
 }
 
-.score-panel .stars li {
+.score-panel .stars li,
+.modal-star li {
     list-style: none;
     display: inline-block;
+
 }
 
 .star-color-lose {
@@ -115,6 +119,127 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*
+ * Styles for the Modal
+ */
+.hide{
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(249, 250, 251, 0.7);
+    width: 100%;
+    height: 100%;
+}
+
+.modal-container {
+    margin: 14% auto;
+    background: #fff;
+    width: 31.25rem;
+    font-family: 'Open Sans', sans-serif;
+    box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.6);
+    padding: 0 0 1.5rem 0;
+}
+
+.modal-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.6rem;
+    background: linear-gradient(160deg, #aa7ecd 10%, #02ccba 100%);
+}
+
+.modal-title {
+    font-weight: 400;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+/*close button*/
+.close {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #555;
+    font-size: 1.1em;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/*modal data*/
+.modal-content{
+    display: flex;
+
+}
+
+.win {
+    display: inline-block;
+    font-size: 5em;
+    margin: 1.7rem;
+    color:#8a8dc9;
+}
+
+.modal-stats {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-txt {
+    font-size: 1.1em;
+}
+
+.modal-time,
+.modal-move {
+    margin: 0.5rem;
+    font-size: 1em;
+}
+
+.modal-star {
+    margin: 0 6rem 1rem;
+    font-size: 1.5rem;
+}
+
+.modal-btns {
+    text-align: center;
+}
+
+.modal-btn {
+    width: 7rem;
+    height: 2.7rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    border-radius: 0.313rem;
+    border: none;
+    color: #666;
+    font-size: 0.85em;
+}
+
+/*play again button*/
+.play {
+    background:#e1efee;
+}
+
+.play:hover {
+    background: #c5ecea;
+    color:#000;
+}
+
+/*cancel button*/
+.cancel {
+    background:#b5b7e4;
+}
+
+.cancel:hover {
+    background: #aaade4;
+    color:#000;
 }
 
 /*

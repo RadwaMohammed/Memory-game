@@ -29,6 +29,15 @@ const starsContainer = document.querySelector('.stars');
 const stars = document.querySelectorAll('.stars li');
 const restart = document.querySelector('.restart');
 
+// modal elements
+const modal = document.querySelector('.modal');
+const cancel = document.querySelector('.cancel');
+const close = document.querySelector('.close');
+const play =  document.querySelector('.play');
+const modalTime = document.querySelector('.modal-time');
+const modalMoves = document.querySelector('.modal-move');
+const modalStars = document.querySelector('.modal-star');
+
 // global
 // variables counts time items
 let sec = 0;
@@ -42,6 +51,9 @@ let moves = 0;
 
 // array that hold the two opened cards to be compared if they match or not
 let openedCards = [];
+
+// counts number of matched cards
+let totalMatchedCards = 0;
 
 
 /*
@@ -276,11 +288,17 @@ function matchCards(openedCardsArray) {
             setTimeout(function () {
                 addClass(card, 'flash');
             }, 700);
+            // increment totalMatchedCards for each card
+            totalMatchedCards++;
         }
         setTimeout(function () {
             // Reset OpenedCards array
             resetOpenedCards(openedCardsArray);
         }, 1200);
+        setTimeout(function () {
+            // Check if the game is over or not
+            gameOver(cardIcons, totalMatchedCards);
+        }, 1400);
     } else {
         /*
         * If not matched - hide cards and animate
@@ -304,6 +322,42 @@ function matchCards(openedCardsArray) {
     }
 }
 
+/*
+* Display modal data - player score - (time, number of moves and star rating)
+*/
+function modalData() {
+    // time after timer stop when game over
+    const timerFinalValue = document.querySelector('.timer').textContent;
+    // star rating when game over
+    const starsFinalValue = document.querySelector('.stars').innerHTML;
+    modalTime.textContent = `Time: ${timerFinalValue}`;
+    modalMoves.textContent = `Moves: ${moves}`;
+    modalStars.innerHTML = `${starsFinalValue}`;
+}
+
+
+/*
+* Toggle modal hide or unhide
+* unhide when game is over and hide when the user close the modal or to play again
+*/
+function toggleModal() {
+    toggleClass(modal, 'hide');
+    // display data of the modal
+    modalData();
+}
+
+
+/*
+* End game - when number of matched card equal number of cards
+* stop timer and show modal  to congratulate the user and display game score
+*/
+function gameOver(cardIconsArray, totalMatchedCards) {
+    if (cardIconsArray.length === totalMatchedCards) {
+        stopTimer();
+        toggleModal();
+    }
+}
+
 
 /*
 * Set Event handler to all parts of the game
@@ -313,6 +367,12 @@ function setEvents() {
     cardsContainer.addEventListener('click', revealCard);
     // Restart button - to reset game
     restart.addEventListener('click', resetGame);
+    // Cancel button in modal to close the modal
+    cancel.addEventListener('click', toggleModal);
+    // Close button in modal to close the modal
+    close.addEventListener('click', toggleModal);
+    // Play again button in modal to replay
+    play.addEventListener('click', playAgain);
 }
 
 
@@ -335,11 +395,24 @@ function resetGame() {
     resetMoves();
     // reset stars
     resetStars(stars);
+    // reset matched card
+    totalMatchedCards = 0;
     // reset opened cards array
     resetOpenedCards(openedCards);
     // reset card container and rebuild cards
     cardsContainer.textContent = '';
     startGame(cardsContainer, cardIcons);
+}
+
+
+/*
+* Play again - when modal appear show the ability to play again
+*/
+function playAgain() {
+    // hide modal
+    toggleModal();
+    // reset game to play again
+    resetGame();
 }
 
 
