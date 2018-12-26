@@ -1,4 +1,31 @@
 /*
+ *  Global Variables
+ */
+ // Create a list that holds all of cards icons
+const cardIcons = [
+    'fa fa-diamond',
+    'fa fa-paper-plane-o',
+    'fa fa-anchor',
+    'fa fa-bolt',
+    'fa fa-cube',
+    'fa fa-anchor',
+    'fa fa-leaf',
+    'fa fa-bicycle',
+    'fa fa-diamond',
+    'fa fa-bomb',
+    'fa fa-leaf',
+    'fa fa-bomb',
+    'fa fa-bolt',
+    'fa fa-bicycle',
+    'fa fa-paper-plane-o',
+    'fa fa-cube'
+];
+
+// variables hold DOM elements
+const cardsContainer = document.querySelector('.deck');
+
+
+/*
 * functions for dealing with class of an element
 */
 // Adding class to an element
@@ -30,8 +57,7 @@ function containClass(elem, classToCheck) {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
+    let currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -39,18 +65,29 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
 
 /*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+* TODO: Build and display cards with its shuffled icons
+* cardsContainer - The container that will contians the cards
+* cardIcons - An array  that holds all of cards icons
+*/
+function displayCards(cardsContainer, cardIcons) {
+    //using DocumentFragment to improve performance
+    const fragment = document.createDocumentFragment();
+    //shuffle card icons
+    const icons = shuffle(cardIcons);
+    //loop and create cards elements
+    for (const icon of icons) {
+        const card = document.createElement('li');
+        addClass(card, 'card');
+        card.innerHTML = `<i class="${icon}"></i>`;
+        fragment.appendChild(card);
+    }
+    cardsContainer.appendChild(fragment);
+    return cardsContainer;
+}
+
+displayCards(cardsContainer, cardIcons);
