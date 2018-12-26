@@ -23,6 +23,15 @@ const cardIcons = [
 
 // variables hold DOM elements
 const cardsContainer = document.querySelector('.deck');
+const timerContainer = document.querySelector('.timer');
+
+// global
+// variables counts time items
+let sec = 0;
+let min = 0;
+let hr = 0;
+let time;
+let timerOff = true;
 
 
 /*
@@ -88,6 +97,49 @@ function displayCards(cardsContainer, cardIcons) {
     }
     cardsContainer.appendChild(fragment);
     return cardsContainer;
+}
+
+
+/*
+* Functions for the game Status (timer)
+*/
+
+/*
+* Setup the timer
+*/
+// set time
+function timeIncrement() {
+    sec++;
+    if (sec >= 60) {
+        sec = 0;
+        min++;
+        if (min >= 60) {
+            min = 0;
+            hr++;
+        }
+    }
+    // display time
+    displayTimer();
+    // repeating
+    startTimer();
+}
+
+// displaying time in formate 00 : 00 : 00
+function displayTimer() {
+    let hrDisplay = (hr <= 9) ? `0${hr}` : hr;
+    let minDisplay = (min <= 9) ? `0${min}` : min;
+    let secDisplay = (sec <= 9) ? `0${sec}` : sec;
+    timerContainer.textContent = `${hrDisplay} : ${minDisplay} : ${secDisplay}`;
+}
+
+// Start the timer
+function startTimer() {
+    time = setTimeout(timeIncrement, 1000);
+}
+
+// Stop the timer
+function stopTimer() {
+    clearTimeout(time);
 }
 
 displayCards(cardsContainer, cardIcons);
