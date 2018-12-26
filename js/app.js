@@ -181,6 +181,15 @@ function incrementMoves() {
 
 
 /*
+* Reset functions
+*/
+// Reset openCards array
+function resetOpenedCards(array) {
+    array.length = 0;
+}
+
+
+/*
 * Listener function to the click of each card
 * Event delegation process using (evt) - Event object and its (.target) property to avoid many events
 */
@@ -209,12 +218,64 @@ function revealCard(evt) {
         openedCards.push(targetedCard);
         // verify if number of cards that opened in openedCards array are two to start comparing
         if (openedCards.length === 2) {
-
-
-
+            // compare the two card
+            matchCards(openedCards);
+            // increment moves counter
+            incrementMoves();
+            // count star rating
+            countStars(moves);
         }
     }
 }
 
+
+/*
+* Function to compare between the two selected cards
+*/
+function matchCards(openedCardsArray) {
+    const [firstCard, secondCard] = openedCardsArray;
+    // using (.className) property to compare between the two card
+    if (firstCard.firstElementChild.className === secondCard.firstElementChild.className) {
+        /*
+        * If matched - keep display cards and animate
+        * increment totalMatchedCards for each card
+        * Check if the game is over or not
+        * reset OpenedCards array
+        */
+        for (const card of openedCardsArray) {
+            setTimeout(function () {
+                    removeClass(card, 'flipInY');
+                    addClass(card, 'match');
+                }, 500);
+            setTimeout(function () {
+                addClass(card, 'flash');
+            }, 700);
+        }
+        setTimeout(function () {
+            // Reset OpenedCards array
+            resetOpenedCards(openedCardsArray);
+        }, 1200);
+    } else {
+        /*
+        * If not matched - hide cards and animate
+        *  reset OpenedCards array
+        */
+        for (const card of openedCardsArray) {
+            setTimeout(function () {
+                removeClass(card, 'flipInY');
+            }, 500);
+            setTimeout(function () {
+                addClass(card, 'shake');
+            }, 700);
+            setTimeout(function () {
+                removeClass(card, 'open', 'show', 'animated', 'shake');
+            }, 1700);
+        }
+        // Reset OpenedCards array
+        setTimeout(function () {
+                resetOpenedCards(openedCardsArray);
+        }, 1400);
+    }
+}
 displayCards(cardsContainer, cardIcons);
 cardsContainer.addEventListener('click', revealCard);
