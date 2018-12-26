@@ -1,14 +1,32 @@
 /*
- * Create a list that holds all of your cards
- */
+* functions for dealing with class of an element
+*/
+// Adding class to an element
+function addClass(elem, ...classToAdd) {
+    const styles = [...classToAdd];
+    for (const style of styles) {
+        elem.classList.add(style);
+    }
+}
 
+// Removing class from an element
+function removeClass(elem, ...classToRemove) {
+    const styles = [...classToRemove];
+    for (const style of styles) {
+        elem.classList.remove(style);
+    }
+}
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+// Toggle class for an element
+function toggleClass(elem, classToToggle) {
+    elem.classList.toggle(classToToggle);
+}
+
+// Check an element contain class
+function containClass(elem, classToCheck) {
+   return elem.classList.contains(classToCheck);
+}
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
