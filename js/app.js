@@ -25,6 +25,8 @@ const cardIcons = [
 const cardsContainer = document.querySelector('.deck');
 const timerContainer = document.querySelector('.timer');
 const movesContainer = document.querySelector('.moves');
+const starsContainer = document.querySelector('.stars');
+const stars = document.querySelectorAll('.stars li');
 
 // global
 // variables counts time items
@@ -155,6 +157,25 @@ function incrementMoves() {
     moves++;
     movesContainer.textContent = `${moves}`;
 }
+
+
+/*
+* Setup stars rating
+*/
+//Count star depending on number of moves when moves 14 or 20 the player lose a star
+ function countStars(moves) {
+    const lastStar = starsContainer.lastElementChild;
+    const preStar = lastStar.previousElementSibling;
+    //using style color for star element that is lost
+    if (moves === 14 || moves === 20) {
+       if (containClass(lastStar, 'star-color-lose')) {
+           addClass(preStar, 'star-color-lose');
+       } else {
+            addClass(lastStar, 'star-color-lose');
+       }
+    }
+ }
+
 
 
 displayCards(cardsContainer, cardIcons);
