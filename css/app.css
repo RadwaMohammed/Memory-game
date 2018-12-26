@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    font-size: 16px;
 }
 
 *,
@@ -14,6 +15,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-size: 1em;
 }
 
 body {
@@ -21,6 +23,76 @@ body {
     font-family: 'Coda', cursive;
 }
 
+/* TODO: Media query for responsive */
+@media screen and (max-width: 424px) {
+    html {
+        font-size: 7px;
+    }
+
+    .score-panel {
+         font-size: 1.5em;
+    }
+
+    .modal .modal-container {
+        width: 35rem;
+        font-size: 1.3em;
+    }
+
+    .modal-container .modal-btn {
+        width: 10rem;
+        height: 4rem;
+    }
+
+    .footer-container .footer-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 425px) and (max-width: 479px) {
+    html {
+        font-size: 9px;
+     }
+
+    .score-panel {
+         font-size: 1.25em;
+    }
+
+    .modal .modal-container {
+        width: 35rem;
+        font-size: 1.3em;
+    }
+
+    .modal-container .modal-btn {
+        width: 10rem;
+        height: 4rem;
+    }
+}
+
+
+@media screen and (min-width: 480px) and (max-width: 569px) {
+    html {
+        font-size: 11px;
+    }
+
+    .score-panel {
+         font-size: 1.2em;
+    }
+
+}
+
+@media screen and (min-width: 570px) and (max-width: 639px) {
+    html {
+        font-size: 13px;
+     }
+}
+
+@media screen and (min-width: 640px) and (max-width: 700px) {
+    html {
+        font-size: 14px;
+     }
+}
+
+/*container*/
 .container {
     display: flex;
     justify-content: center;
@@ -33,52 +105,55 @@ h1 {
     font-weight: 300;
 }
 
+
 /*
  * Styles for the deck of cards
  */
-
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 41.25rem;
+    min-height: 42.5rem;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    padding: 2rem;
+    border-radius: 0.625rem;
+    box-shadow: 0.75rem 0.938rem 1.25rem 0 rgba(46, 61, 73, 0.5);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 3em;
+    margin: 0 0 3rem;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    height: 7.813rem;
+    width: 7.813rem;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 0.313rem 0.125px 1.25rem 0 rgba(46, 61, 73, 0.5);
 }
 
+/*open card style*/
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
 }
 
+/*show card style*/
 .deck .card.show {
-    font-size: 33px;
+    font-size: 2.063rem;
 }
 
+/*match card style*/
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 2.063rem;
 }
 
 .animated {
@@ -92,8 +167,10 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+    width: 26rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 /*Star rating style*/
@@ -116,10 +193,24 @@ h1 {
     color: #ebeced;
 }
 
+/*Restart button*/
 .score-panel .restart {
-    float: right;
+    display: inline-block;
     cursor: pointer;
 }
+
+/*Move counter*/
+.moves {
+    display: inline-block;
+    width: 1.125rem;
+}
+
+/*Timer*/
+.timer {
+    display: inline-block;
+    min-width: 5.8rem;
+}
+
 
 /*
  * Styles for the Modal
@@ -242,6 +333,7 @@ h1 {
     color:#000;
 }
 
+
 /*
  * Styles for footer
  */
@@ -253,3 +345,4 @@ h1 {
 .project-name {
     color: #8a8dc9;
 }
+
