@@ -11,9 +11,9 @@ The game board consists of 16 "cards" arranged in a grid. The deck is made up of
 
 ## Scoring Rate
 
-3 stars = 13 moves or less
-2 stars = 19 moves or less
-1 star = 20 moves or more
+- 3 stars = 13 moves or less
+- 2 stars = 19 moves or less
+- 1 star = 20 moves or more
 
 ## Contributing
 
