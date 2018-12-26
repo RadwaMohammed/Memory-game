@@ -39,6 +39,9 @@ let timerOff = true;
 // counts number of moves
 let moves = 0;
 
+// array that hold the two opened cards to be compared if they match or not
+let openedCards = [];
+
 
 /*
 * functions for dealing with class of an element
@@ -177,5 +180,41 @@ function incrementMoves() {
  }
 
 
+/*
+* Listener function to the click of each card
+* Event delegation process using (evt) - Event object and its (.target) property to avoid many events
+*/
+function revealCard(evt) {
+    const targetedCard = evt.target;
+    /*
+    * using (.nodeName) property (verifies target is desired element)
+    * doesn't contain open class (to make sure that card not opened and user didn't click on the same card twice)
+    * openedCards.length < 2 (to ensure that openedCards array has one card or no card yet)
+    */
+    if (targetedCard && targetedCard.nodeName === 'LI' &&
+        !containClass(targetedCard, 'open') && openedCards.length < 2)
+        {
+        // start timer
+        if (timerOff) {
+            startTimer();
+            timerOff = false;
+        }
+        // flip card
+        addClass(targetedCard, 'animated', 'flipInY');
+        // show the card by adding class open which we use to verify that card is opened
+        setTimeout(function openCard() {
+            addClass(targetedCard, 'open', 'show');
+        }, 100);
+        // add this card which is now opened to openedCards array
+        openedCards.push(targetedCard);
+        // verify if number of cards that opened in openedCards array are two to start comparing
+        if (openedCards.length === 2) {
+
+
+
+        }
+    }
+}
 
 displayCards(cardsContainer, cardIcons);
+cardsContainer.addEventListener('click', revealCard);
