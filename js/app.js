@@ -27,6 +27,7 @@ const timerContainer = document.querySelector('.timer');
 const movesContainer = document.querySelector('.moves');
 const starsContainer = document.querySelector('.stars');
 const stars = document.querySelectorAll('.stars li');
+const restart = document.querySelector('.restart');
 
 // global
 // variables counts time items
@@ -188,6 +189,31 @@ function resetOpenedCards(array) {
     array.length = 0;
 }
 
+// Reset timer items
+function resetTimer() {
+    stopTimer();
+    timerOff = true;
+    sec = 0;
+    min = 0;
+    hr = 0;
+    displayTimer();
+}
+
+// Reset moves counter
+function resetMoves() {
+    moves = 0;
+    movesContainer.textContent = `${moves}`;
+}
+
+// Reset stars rating
+function resetStars(stars) {
+    for (const star of stars) {
+        if (containClass(star, 'star-color-lose')) {
+            removeClass(star, 'star-color-lose');
+        }
+    }
+}
+
 
 /*
 * Listener function to the click of each card
@@ -277,5 +303,45 @@ function matchCards(openedCardsArray) {
         }, 1400);
     }
 }
-displayCards(cardsContainer, cardIcons);
-cardsContainer.addEventListener('click', revealCard);
+
+
+/*
+* Set Event handler to all parts of the game
+*/
+function setEvents() {
+    // Add event listener to the parent of cards to manage events for child elements
+    cardsContainer.addEventListener('click', revealCard);
+    // Restart button - to reset game
+    restart.addEventListener('click', resetGame);
+}
+
+
+/*
+* Start game - display cards and set event listener
+*/
+function startGame(cardsContainer, cardIcons) {
+    displayCards(cardsContainer, cardIcons);
+    setEvents();
+}
+
+
+/*
+* Reset game
+*/
+function resetGame() {
+    // reset timer
+    resetTimer();
+    // reset moves
+    resetMoves();
+    // reset stars
+    resetStars(stars);
+    // reset opened cards array
+    resetOpenedCards(openedCards);
+    // reset card container and rebuild cards
+    cardsContainer.textContent = '';
+    startGame(cardsContainer, cardIcons);
+}
+
+
+// TODO: start the game
+startGame(cardsContainer, cardIcons);
