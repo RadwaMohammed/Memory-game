@@ -24,6 +24,7 @@ const cardIcons = [
 // variables hold DOM elements
 const cardsContainer = document.querySelector('.deck');
 const timerContainer = document.querySelector('.timer');
+const movesContainer = document.querySelector('.moves');
 
 // global
 // variables counts time items
@@ -32,6 +33,9 @@ let min = 0;
 let hr = 0;
 let time;
 let timerOff = true;
+
+// counts number of moves
+let moves = 0;
 
 
 /*
@@ -101,7 +105,7 @@ function displayCards(cardsContainer, cardIcons) {
 
 
 /*
-* Functions for the game Status (timer)
+* Functions for the game Status (timer, counting moves)
 */
 
 /*
@@ -141,5 +145,16 @@ function startTimer() {
 function stopTimer() {
     clearTimeout(time);
 }
+
+
+/*
+* Setup moves counter
+*/
+// Increment moves and display it
+function incrementMoves() {
+    moves++;
+    movesContainer.textContent = `${moves}`;
+}
+
 
 displayCards(cardsContainer, cardIcons);
