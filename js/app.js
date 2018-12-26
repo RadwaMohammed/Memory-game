@@ -106,11 +106,11 @@ function shuffle(array) {
 * cardIcons - An array  that holds all of cards icons
 */
 function displayCards(cardsContainer, cardIcons) {
-    //using DocumentFragment to improve performance
+    // using DocumentFragment to improve performance
     const fragment = document.createDocumentFragment();
-    //shuffle card icons
+    // shuffle card icons
     const icons = shuffle(cardIcons);
-    //loop and create cards elements
+    // loop and create cards elements
     for (const icon of icons) {
         const card = document.createElement('li');
         addClass(card, 'card');
@@ -123,7 +123,7 @@ function displayCards(cardsContainer, cardIcons) {
 
 
 /*
-* Functions for the game Status (timer, counting moves)
+* Functions for the game Status (time, number of moves and star rating)
 */
 
 /*
@@ -178,11 +178,11 @@ function incrementMoves() {
 /*
 * Setup stars rating
 */
-//Count star depending on number of moves when moves 14 or 20 the player lose a star
+// Count star depending on number of moves when moves 14 or 20 the player lose a star
  function countStars(moves) {
     const lastStar = starsContainer.lastElementChild;
     const preStar = lastStar.previousElementSibling;
-    //using style color for star element that is lost
+    // using style color for star element that is lost
     if (moves === 14 || moves === 20) {
        if (containClass(lastStar, 'star-color-lose')) {
            addClass(preStar, 'star-color-lose');
@@ -298,11 +298,11 @@ function matchCards(openedCardsArray) {
         setTimeout(function () {
             // Check if the game is over or not
             gameOver(cardIcons, totalMatchedCards);
-        }, 1400);
+        }, 1450);
     } else {
         /*
         * If not matched - hide cards and animate
-        *  reset OpenedCards array
+        * reset OpenedCards array
         */
         for (const card of openedCardsArray) {
             setTimeout(function () {
@@ -318,7 +318,7 @@ function matchCards(openedCardsArray) {
         // Reset OpenedCards array
         setTimeout(function () {
                 resetOpenedCards(openedCardsArray);
-        }, 1400);
+        }, 1450);
     }
 }
 
