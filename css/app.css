@@ -116,3 +116,15 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Styles for footer
+ */
+.footer-container {
+    margin: -1em auto 1em;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+}
+.project-name {
+    color: #8a8dc9;
+}
