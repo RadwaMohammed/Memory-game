@@ -1,42 +1,38 @@
 /*
  *  Global Variables
  */
- // Create a list that holds all of cards icons
-const cardIcons = [
+// Create a list that holds all of cards icons
+let cardIcons = [
     'fa fa-diamond',
     'fa fa-paper-plane-o',
     'fa fa-anchor',
     'fa fa-bolt',
     'fa fa-cube',
-    'fa fa-anchor',
     'fa fa-leaf',
     'fa fa-bicycle',
-    'fa fa-diamond',
     'fa fa-bomb',
-    'fa fa-leaf',
-    'fa fa-bomb',
-    'fa fa-bolt',
-    'fa fa-bicycle',
-    'fa fa-paper-plane-o',
-    'fa fa-cube'
+];
+cardIcons = [
+    ...cardIcons,
+    ...cardIcons
 ];
 
 // variables hold DOM elements
-const cardsContainer = document.querySelector('.deck');
-const timerContainer = document.querySelector('.timer');
-const movesContainer = document.querySelector('.moves');
-const starsContainer = document.querySelector('.stars');
-const stars = document.querySelectorAll('.stars li');
-const restart = document.querySelector('.restart');
+const cardsContainer = document.querySelector('.deck'),
+      timerContainer = document.querySelector('.timer'),
+      movesContainer = document.querySelector('.moves'),
+      starsContainer = document.querySelector('.stars'),
+      stars = document.querySelectorAll('.stars li'),
+      restart = document.querySelector('.restart'),
 
 // modal elements
-const modal = document.querySelector('.modal');
-const cancel = document.querySelector('.cancel');
-const close = document.querySelector('.close');
-const play =  document.querySelector('.play');
-const modalTime = document.querySelector('.modal-time');
-const modalMoves = document.querySelector('.modal-move');
-const modalStars = document.querySelector('.modal-star');
+      modal = document.querySelector('.modal'),
+      cancel = document.querySelector('.cancel'),
+      close = document.querySelector('.close'),
+      play =  document.querySelector('.play'),
+      modalTime = document.querySelector('.modal-time'),
+      modalMoves = document.querySelector('.modal-move'),
+      modalStars = document.querySelector('.modal-star');
 
 // global
 // variables counts time items
